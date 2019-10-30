@@ -11,9 +11,8 @@
 /* ************************************************************************** */
 
 #include "../filler.h"
-#include "../get_next_line.h"
 
-void	free_piece(t_P *map)
+void	free_piece(t_map *map)
 {
 	int i;
 
@@ -27,7 +26,7 @@ void	free_piece(t_P *map)
 	map->piece = NULL;
 }
 
-void	print_piece(t_P map)
+void	print_piece(t_map map)
 {
 	int i;
 	int j;
@@ -47,7 +46,7 @@ void	print_piece(t_P map)
 	}
 }
 
-int		get_piece_dim(t_P *map, char *line)
+int		get_piece_dim(t_map *map, char *line)
 {
 	int i;
 
@@ -70,7 +69,7 @@ int		get_piece_dim(t_P *map, char *line)
 	return (1);
 }
 
-void	get_stars_coord(t_P *map, char *line)
+void	get_stars_coord(t_map *map, char *line)
 {
 	int i;
 	int j;
@@ -98,7 +97,7 @@ void	get_stars_coord(t_P *map, char *line)
 	}
 }
 
-int		fill_score_coord(t_P *map)
+int		fill_score_coord(t_map *map)
 {
 	int i;
 	int j;
@@ -106,28 +105,19 @@ int		fill_score_coord(t_P *map)
 
 	if (!(map->sc = (int **)ft_memalloc(sizeof(int *) * map->cnt_str)))
 		return (0);
-	else
+	else if (!(i = 0))
 	{
-		i = 0;
 		while (i < map->cnt_str)
 			map->sc[i++] = (int *)ft_memalloc(sizeof(int) * 2);
-		i = 0;
+		i = -1;
 		k = 0;
-		while (i < map->p_c[0])
-		{
-			j = 0;
-			while (j < map->p_c[1])
-			{
+		while (++i < map->p_c[0] && (j = -1))
+			while (++j < map->p_c[1])
 				if (map->piece[i][j] == -1)
 				{
 					map->sc[k][0] = i;
-					map->sc[k][1] = j;
-					k++;
+					map->sc[k++][1] = j;
 				}
-				j++;
-			}
-			i++;
-		}
 	}
 	return (1);
 }

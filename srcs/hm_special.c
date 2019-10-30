@@ -11,9 +11,8 @@
 /* ************************************************************************** */
 
 #include "../filler.h"
-#include "../get_next_line.h"
 
-void		hm_fill_O(t_P *map)
+void		hm_fill_zero(t_map *map)
 {
 	int i;
 	int j;
@@ -25,7 +24,7 @@ void		hm_fill_O(t_P *map)
 				map->map[i][j] = 100;
 }
 
-void		heat_map_i(t_P *map)
+void		heat_map_i(t_map *map)
 {
 	int i;
 	int j;
@@ -51,10 +50,10 @@ void		heat_map_i(t_P *map)
 			}
 		i = (flag == 1) ? 1000000 : i;
 	}
-	hm_fill_O(map);
+	hm_fill_zero(map);
 }
 
-void		heat_map_j2(t_P *map, int i, int j)
+void		heat_map_j2(t_map *map, int i, int j)
 {
 	int k;
 	int score;
@@ -74,7 +73,7 @@ void		heat_map_j2(t_P *map, int i, int j)
 	}
 }
 
-void		heat_map_j(t_P *map)
+void		heat_map_j(t_map *map)
 {
 	int i;
 	int j;
@@ -90,5 +89,5 @@ void		heat_map_j(t_P *map)
 			break ;
 	}
 	heat_map_j2(map, i, j);
-	hm_fill_O(map);
+	hm_fill_zero(map);
 }

@@ -11,9 +11,8 @@
 /* ************************************************************************** */
 
 #include "../filler.h"
-#include "../get_next_line.h"
 
-void	free_sc(t_P *map)
+void	free_sc(t_map *map)
 {
 	int i;
 
@@ -36,21 +35,21 @@ void	call_gnl_free(int fd, char *line, int count)
 	}
 }
 
-void	freeingandall(t_P *map, char **line)
+void	freeingandall(t_map *map, char **line)
 {
 	free_piece(map);
 	free_sc(map);
 	call_gnl_free(0, *line, 2);
 }
 
-void	free_and_exit(t_P *map)
+void	free_and_exit(t_map *map)
 {
 	free_piece(map);
 	free_sc(map);
 	free_map(map);
 }
 
-void		free_map(t_P *map)
+void	free_map(t_map *map)
 {
 	int i;
 

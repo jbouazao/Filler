@@ -11,9 +11,8 @@
 /* ************************************************************************** */
 
 #include "../filler.h"
-#include "../get_next_line.h"
 
-int		get_score(t_P *map, int i, int j, int st)
+int		get_score(t_map *map, int i, int j, int st)
 {
 	int k;
 	int score;
@@ -38,7 +37,7 @@ int		get_score(t_P *map, int i, int j, int st)
 	return (score);
 }
 
-void	calc_scores(t_P *map)
+void	calc_scores(t_map *map)
 {
 	int i[3];
 	int score;

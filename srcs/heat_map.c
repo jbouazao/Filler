@@ -11,9 +11,8 @@
 /* ************************************************************************** */
 
 #include "../filler.h"
-#include "../get_next_line.h"
 
-static void fill_map(int i, int j, int score, t_P *map)
+static void	fill_map(int i, int j, int score, t_map *map)
 {
 	if ((i - 1 >= 0) && (j - 1 >= 0) && map->map[i - 1][j - 1] == 0)
 		map->map[i - 1][j - 1] = (map->map[i][j] == -2) ? 1 : score;
@@ -33,7 +32,7 @@ static void fill_map(int i, int j, int score, t_P *map)
 		map->map[i + 1][j + 1] = (map->map[i][j] == -2) ? 1 : score;
 }
 
-void		heat_map_gen(t_P *map)
+void		heat_map_gen(t_map *map)
 {
 	int score;
 	int	target;
@@ -55,7 +54,7 @@ void		heat_map_gen(t_P *map)
 	}
 }
 
-int			chk_height(t_P *map)
+int			chk_height(t_map *map)
 {
 	int i;
 	int j;
@@ -77,7 +76,7 @@ int			chk_height(t_P *map)
 	return (0);
 }
 
-int			chk_len(t_P *map)
+int			chk_len(t_map *map)
 {
 	int i;
 	int j;

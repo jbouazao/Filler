@@ -11,9 +11,8 @@
 /* ************************************************************************** */
 
 #include "../filler.h"
-#include "../get_next_line.h"
 
-int			init_map(t_P *map)
+int		init_map(t_map *map)
 {
 	int i;
 	int j;
@@ -35,7 +34,7 @@ int			init_map(t_P *map)
 	return (1);
 }
 
-int		record_moves(t_P *map, char *line)
+int		record_moves(t_map *map, char *line)
 {
 	int i;
 	int j;
@@ -52,9 +51,9 @@ int		record_moves(t_P *map, char *line)
 		while (j < map->y)
 		{
 			if (line[j + 4] == 'X' || line[j + 4] == 'x')
-				map->map[i][j] = (map->P == 'x') ? -1 : -2;
+				map->map[i][j] = (map->p == 'x') ? -1 : -2;
 			else if (line[j + 4] == 'O' || line[j + 4] == 'o')
-				map->map[i][j] = (map->P == 'o') ? -1 : -2;
+				map->map[i][j] = (map->p == 'o') ? -1 : -2;
 			else
 				map->map[i][j] = 0;
 			j++;
@@ -64,7 +63,7 @@ int		record_moves(t_P *map, char *line)
 	return (1);
 }
 
-void		print_map(t_P map)
+void	print_map(t_map map)
 {
 	int i;
 	int j;
@@ -76,7 +75,7 @@ void		print_map(t_P map)
 		while (j < map.y)
 		{
 			ft_putnbr_fd(map.map[i][j], 3);
-			if(map.map[i][j+1] > 9 || map.map[i][j+1] < 0)
+			if (map.map[i][j + 1] > 9 || map.map[i][j + 1] < 0)
 				ft_putchar_fd(' ', 3);
 			else
 				ft_putstr_fd("  ", 3);
@@ -88,7 +87,7 @@ void		print_map(t_P map)
 	ft_putendl_fd("", 3);
 }
 
-int		PP_det(t_P *map, char *line)
+int		pp_det(t_map *map, char *line)
 {
 	int i;
 
@@ -96,7 +95,7 @@ int		PP_det(t_P *map, char *line)
 	if (get_next_line(0, &line) < 0)
 		return (0);
 	if (ft_strstr(line, "p2"))
-		map->P = 'x';
+		map->p = 'x';
 	ft_strdel(&line);
 	if (get_next_line(0, &line) < 0)
 		return (0);
